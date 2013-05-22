@@ -1,4 +1,5 @@
-(* Function to compute the smallest from int*int*int *)
+(* Exercise 3.1.1b
+   Function to compute the smallest from int*int*int *)
 
 fun smallest(a:int,b:int,c:int)=
   if (a<b)
