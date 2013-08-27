@@ -1,7 +1,7 @@
 local
   (* import Basis Library *)
   $(SML_LIB)/basis/basis.mlb
-  fileconverter.sml
+  convertfile-sigs.sml
   convertFileToWords.sml
 in
   signature FILECONVERTER
