@@ -1,6 +1,6 @@
 ## Exercise 3.1.1
 
-*DefiningFunctions-open.sml expression to open the structure
+*DefiningFunctions-open.sml - expression to open the structure
 
 *DefiningFunctions.sml - structure containing function definintions
 
