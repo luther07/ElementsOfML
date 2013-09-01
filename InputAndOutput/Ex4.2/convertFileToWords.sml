@@ -5,11 +5,11 @@ structure ConvertFile : FILECONVERTER =
     (* calls getWords and getFile *)
     (* string -> string list *)
     getWords((getFile(filePath)),[])
-  
+
   and getFile(filePath: string) =
     (* string -> TextIO.instream *)
     TextIO.openIn(filePath)
-                                                                                                                             
+
   and getWords(wordFile: TextIO.instream, words: string list) =
     (* calls getNextWord *)
     (* TextIO.instream*string list -> string list *)
@@ -21,8 +21,7 @@ structure ConvertFile : FILECONVERTER =
       else
         getWords(wordFile, (getNextWord(wordFile)::words))
     end
-  
-  
+
   and getNextWord(wordFile: TextIO.instream) =
     (* calls removeEmptyWord and inputWord *)
     (* TextIO.instream -> string *)
@@ -36,7 +35,7 @@ structure ConvertFile : FILECONVERTER =
       else
         inputWord(wordFile,"")
     end
-  
+
   and inputWord(wordFile: TextIO.instream, word: string) =
     (* recursively calls itself *)
     (* tested tested tested tested tested *)
@@ -58,7 +57,7 @@ structure ConvertFile : FILECONVERTER =
       else
         word
     end
-  
+
   and removeEmptyWord(wordFile: TextIO.instream) =
     (* TextIO.instream -> string *)
     let

@@ -1,0 +1,11 @@
+local
+  (* import Basis Library *)
+  $(SML_LIB)/basis/basis.mlb
+  convertfile-sigs.sml
+  convertFileToWords.sml
+in
+  signature FILECONVERTER
+  structure ConvertFile
+  convertfile-open.sml
+  test.sml
+end
