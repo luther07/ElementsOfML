@@ -1,0 +1,10 @@
+local
+  (* import Basis Library *)
+  $(SML_LIB)/basis/basis.mlb
+  definingfunctions-sigs.sml
+  DefiningFunctions.sml
+in
+  signature DEFININGFUNCTIONS
+  structure DefiningFunctions
+  DefiningFunctions-open.sml
+end
