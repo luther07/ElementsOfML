@@ -6,15 +6,19 @@ structure DefiningFunctions : DEFININGFUNCTIONS =
 
   fun inputWord(wordFile: TextIO.instream, word: string) =
     let
-      val nextChar = valOf(TextIO.lookahead(wordFile))
+      val nextChar = TextIO.lookahead(wordFile)
     in
-      if (nextChar = #"\n" orelse nextChar = #"\t" orelse nextChar = #"\n")
-        then (TextIO.input1(wordFile);word)
+      if isSome(nextChar)
+        then
+          if (valOf(nextChar) = #"\n" orelse valOf(nextChar) = #"\t" orelse valOf(nextChar) = #" ")
+            then (TextIO.input1(wordFile);word)
+          else
+            if TextIO.endOfStream(wordFile)
+              then word
+            else
+              inputWord(wordFile,(word ^ str(valOf(TextIO.input1(wordFile)))))
       else
-        if TextIO.endOfStream(wordFile)
-          then word
-        else
-          inputWord(wordFile,(word ^ str(valOf(TextIO.input1(wordFile)))))
+        word 
     end;
   
   fun cycle(nil)=nil
