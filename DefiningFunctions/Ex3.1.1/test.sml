@@ -54,3 +54,42 @@ in
   else
     print "test failes\n"
 end;
+
+(* test smallest *)
+print "test_smallest: ";
+print "smallest(0,9,8) should equal 0--->";
+let
+  val tuple = (0,9,8)
+  val smallest_item = smallest(tuple)
+in
+  if (smallest_item = 0)
+    then print "test passed\n"
+  else
+    print "test failed\n"
+end;
+
+(* test reverse_tuple *)
+print "test_reverse_tuple: ";
+print "reverse_tuple(1,2,3) should equal (3,2,1)--->";
+let
+  val tuple = (1,2,3)
+  val reverse_123 = reverse_tuple(tuple)
+in
+  if (reverse_123 = (3,2,1))
+    then print "test passed\n"
+  else
+    print "test failed\n"
+end;
+
+(* test thirdchar *)
+print "test_thirdchar";
+print "thirdchar([\"#a\",\"#b\",#\"c\"]) should equal \"#c\"--->";
+let
+  val character_list = [#"a",#"b",#"c"]
+  val third_from_list = thirdchar(character_list)
+in
+  if (third_from_list = #"c")
+    then print "test passed\n"
+  else
+    print "test failed\n"
+end;
