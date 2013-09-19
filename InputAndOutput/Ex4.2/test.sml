@@ -1,11 +1,9 @@
-val x = convertFileToWords("file.txt");
+val test_file = convertFileToWords("file.txt");
 
-val y = hd x;
-
-print y;
+val first_word = hd test_file;
 
 fun printWords(nil) = ()
    |printWords(word::nil) = print(word ^ "\n")
    |printWords(word::words) = (print(word ^ "\n");printWords(words));
 
-printWords(convertFileToWords("new.file"));
+printWords(convertFileToWords("file.txt"));
