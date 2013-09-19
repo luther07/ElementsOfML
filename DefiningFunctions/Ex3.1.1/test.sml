@@ -1,5 +1,6 @@
+(* test_cube_real  *)
 print "test_cube_real: ";
-print "test cube_real(8) ... ";
+print "cube_real(8) should equal 512--->";
 let
   val test_cube_real = cube_real(8.0)
 in
@@ -9,19 +10,24 @@ in
     print "test failed\n"
 end;
 
+(* test_inputWord  *)
 print "test_inputWord: ";
-print "test inputWord with empty file ...";
+print "inputWord called on  empty file should equal empty string--->";
 let
   val emptyOutputFile = TextIO.openOut("empty.txt")
   val closeFile = TextIO.closeOut(emptyOutputFile)
   val emptyInputFile = TextIO.openIn("empty.txt")
   val nextWord = inputWord(emptyInputFile,"")
 in
-  print "test passed\n"
+  if (nextWord = "")
+    then print "test passed\n"
+  else
+    print "test failed\n"
 end;
 
+(* test_inputWord *)
 print "test_inputWord: ";
-print "test inputWord with hello world file ...";
+print "inputWord called on hello world file should equal \"hello\"--->";
 let
   val helloWorldOutputFile = TextIO.openOut("helloworld.txt")
   val helloworld = TextIO.output(helloWorldOutputFile,"hello world")
@@ -32,5 +38,19 @@ in
   if (nextWord = "hello")
     then print "test passed\n"
   else
-    (print nextWord;print "test failed\n")
+    print "test failed\n"
+end;
+
+(* test cycle *)
+print "test_cycle: ";
+print "cycle([1,2,3]) should equal [2,3,1]--->";
+let
+  val test_list = [1,2,3]
+  val cycle_test_list = cycle([1,2,3])
+  
+in
+  if (cycle_test_list = [2,3,1])
+    then print "test passed\n"
+  else
+    print "test failes\n"
 end;
