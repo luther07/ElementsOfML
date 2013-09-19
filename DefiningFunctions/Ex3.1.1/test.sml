@@ -12,7 +12,7 @@ end;
 
 (* test_inputWord  *)
 print "test_inputWord: ";
-print "inputWord called on  empty file should equal empty string--->";
+print "inputWord(empty_file) should equal \"\"--->";
 let
   val emptyOutputFile = TextIO.openOut("empty.txt")
   val closeFile = TextIO.closeOut(emptyOutputFile)
@@ -27,7 +27,7 @@ end;
 
 (* test_inputWord *)
 print "test_inputWord: ";
-print "inputWord called on hello world file should equal \"hello\"--->";
+print "inputWord(hello_world) should equal \"hello\"--->";
 let
   val helloWorldOutputFile = TextIO.openOut("helloworld.txt")
   val helloworld = TextIO.output(helloWorldOutputFile,"hello world")
