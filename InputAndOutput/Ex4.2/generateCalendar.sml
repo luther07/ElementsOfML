@@ -1,8 +1,9 @@
 fun generateCalendar(dateKey: string) =
   let
-    val (month,day,numberOfDays) = parseKey(dateKey)    
+    val (month,day,numberOfDays) = parseKey(dateKey)
+    val dayHeader = "Sun\tMon\tTue\tWed\tThu\tFri\tSat\n"
   in
-    (month,day,numberOfDays)
+    generateHeader(month) ^ dayHeader
   end
 
 and parseKey(dateKey: string) = 
@@ -20,12 +21,13 @@ and parseKey(dateKey: string) =
                          nil)
   in
     (month,day,numberOfDays)
-  end;
+  end
 
-(*and generateHeader(month: string) =
-  generateMonthHeader(month: string) ^ "\n" ^ generateDayHeader;
+and generateHeader(month: string) =
+  generateMonthHeader(month: string)
 
-and generateMonthHeader(month: string) = "\t\t\t" ^
+and generateMonthHeader(month: string) =
+  "\t\t\t" ^
   (if month = "Jan" then "January"
   else if month = "Feb" then "February"
   else if month = "Mar" then "March"
@@ -37,6 +39,7 @@ and generateMonthHeader(month: string) = "\t\t\t" ^
   else if month = "Sep" then "September"
   else if month = "Oct" then "October"
   else if month = "Nov" then "November"
-  else if month = "Dec" then "December");*)
+  else if month = "Dec" then "December"
+  else "-1000000ERROR") ^ "\n";
 
-generateCalendar("Sep Sun 30");
+print (generateCalendar("Sep Sun 30"));
