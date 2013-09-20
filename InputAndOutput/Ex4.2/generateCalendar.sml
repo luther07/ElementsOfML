@@ -18,8 +18,8 @@ and parseKey(dateKey: string) =
                       String.sub(dateKey,5) ::
                       String.sub(dateKey,6) ::
                       nil)
-    val numberOfDays = (10 * (ord(String.sub(dateKey,8))-50)) +
-                       (ord(String.sub(dateKey,9))-50)
+    val numberOfDays = (10 * (ord(String.sub(dateKey,8))-48)) +
+                       (ord(String.sub(dateKey,9))-48)
   in
     (month,day,numberOfDays)
   end
@@ -56,10 +56,8 @@ and allDaysHelper(day: string, numberOfDays: int, currentNumber: int) =
     else if day = "Fri" then (generateNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Sat",numberOfDays,currentNumber+1)))
     else if day = "Sat" then (generateNumber(currentNumber) ^ "\n" ^ (allDaysHelper("Sun",numberOfDays,currentNumber+1)))
     else "-1000000ERROR"
-  else ""
+  else if (day <> "Sun") then "\n" else ""
 
 and generateNumber(number: int) =
   if number > 9 then Int.toString(number)
   else " " ^ Int.toString(number);
-
-print (generateCalendar("Sep Sun 30"));
