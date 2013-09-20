@@ -3,9 +3,9 @@
 fun generateCalendar(dateKey: string) =
   let
     val (month,day,numberOfDays) = parseKey(dateKey)
-    val dayHeader = "Sun\tMon\tTue\tWed\tThu\tFri\tSat\n"
+    val daysHeader = "Sun\tMon\tTue\tWed\tThu\tFri\tSat\n"
   in
-    generateHeader(month) ^ dayHeader ^ generateAllDays(day,numberOfDays)
+    generateHeader(month) ^ daysHeader ^ generateAllDays(day,numberOfDays)
   end
 
 and parseKey(dateKey: string) = 
@@ -18,8 +18,9 @@ and parseKey(dateKey: string) =
                       String.sub(dateKey,5) ::
                       String.sub(dateKey,6) ::
                       nil)
-    val numberOfDays = (10 * (ord(String.sub(dateKey,8))-48)) +
-                       (ord(String.sub(dateKey,9))-48)
+    val asciiCodeForZero = 48
+    val numberOfDays = (10 * (ord(String.sub(dateKey,8))-asciiCodeForZero)) +
+                       (ord(String.sub(dateKey,9))-asciiCodeForZero)
   in
     (month,day,numberOfDays)
   end
@@ -48,16 +49,16 @@ and generateAllDays(day: string, numberOfDays: int) =
 
 and allDaysHelper(day: string, numberOfDays: int, currentNumber: int) =
   if numberOfDays >= currentNumber then
-    if day = "Sun" then (generateNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Mon",numberOfDays,currentNumber+1)))
-    else if day = "Mon" then (generateNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Tue",numberOfDays,currentNumber+1)))
-    else if day = "Tue" then (generateNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Wed",numberOfDays,currentNumber+1)))
-    else if day = "Wed" then (generateNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Thu",numberOfDays,currentNumber+1)))
-    else if day = "Thu" then (generateNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Fri",numberOfDays,currentNumber+1)))
-    else if day = "Fri" then (generateNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Sat",numberOfDays,currentNumber+1)))
-    else if day = "Sat" then (generateNumber(currentNumber) ^ "\n" ^ (allDaysHelper("Sun",numberOfDays,currentNumber+1)))
+    if day = "Sun" then (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Mon",numberOfDays,currentNumber+1)))
+    else if day = "Mon" then (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Tue",numberOfDays,currentNumber+1)))
+    else if day = "Tue" then (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Wed",numberOfDays,currentNumber+1)))
+    else if day = "Wed" then (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Thu",numberOfDays,currentNumber+1)))
+    else if day = "Thu" then (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Fri",numberOfDays,currentNumber+1)))
+    else if day = "Fri" then (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("Sat",numberOfDays,currentNumber+1)))
+    else if day = "Sat" then (formatNumber(currentNumber) ^ "\n" ^ (allDaysHelper("Sun",numberOfDays,currentNumber+1)))
     else "-1000000ERROR"
   else if (day <> "Sun") then "\n" else ""
 
-and generateNumber(number: int) =
+and formatNumber(number: int) =
   if number > 9 then Int.toString(number)
   else " " ^ Int.toString(number);
