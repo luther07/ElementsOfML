@@ -1,3 +1,5 @@
+(* A function that generates a printable calendar *)
+
 fun generateCalendar(dateKey: string) =
   let
     val (month,day,numberOfDays) = parseKey(dateKey)
