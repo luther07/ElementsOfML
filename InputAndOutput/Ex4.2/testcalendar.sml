@@ -7,7 +7,7 @@ fun loop() = (
     val date_key = TextIO.inputLine(TextIO.stdIn)
   in
     if isSome(date_key)
-      then print (generateCalendar(valOf(date_key)))
+      then (print (generateCalendar(valOf(date_key)));loop())
     else
       ()
 end);
