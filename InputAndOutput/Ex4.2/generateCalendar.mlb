@@ -1,0 +1,10 @@
+local
+  (* import Basis Library *)
+  $(SML_LIB)/basis/basis.mlb
+  generatecalendar-sigs.sml
+  generateCalendar.sml
+in
+  signature GENERATECALENDAR
+  structure GenerateCalendar
+  generatecalendar-open.sml
+end
