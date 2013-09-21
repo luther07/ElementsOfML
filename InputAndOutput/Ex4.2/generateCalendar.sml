@@ -54,14 +54,18 @@ structure GenerateCalendar : GENERATECALENDAR =
     end
   
   and generateAllDays(day: string, numberOfDays: int) =
-    if day = "Sun" then (allDaysHelper("Sun",numberOfDays,1))
+    let
+      exception InvalidDay of string
+    in
+      if day = "Sun" then (allDaysHelper("Sun",numberOfDays,1))
       else if day = "Mon" then "\t" ^ (allDaysHelper("Mon",numberOfDays,1))
       else if day = "Tue" then "\t\t" ^ (allDaysHelper("Tue",numberOfDays,1))
       else if day = "Wed" then "\t\t\t" ^ (allDaysHelper("Wed",numberOfDays,1))
       else if day = "Thu" then "\t\t\t\t" ^ (allDaysHelper("Thu",numberOfDays,1))
       else if day = "Fri" then "\t\t\t\t\t" ^ (allDaysHelper("Fri",numberOfDays,1))
       else if day = "Sat" then "\t\t\t\t\t\t" ^ (allDaysHelper("Sat",numberOfDays,1))
-      else "-1000000ERROR"
+      else raise InvalidDay(day)
+    end
 
   and allDaysHelper(day: string, numberOfDays: int, currentNumber: int) =
     if numberOfDays >= currentNumber then
