@@ -5,8 +5,12 @@ structure GenerateCalendar : GENERATECALENDAR =
     let
       val (month,day,numberOfDays) = parseKey(dateKey)
       val daysHeader = "Sun\tMon\tTue\tWed\tThu\tFri\tSat\n"
+      exception InvalidMonthSize of int
     in
-      generateHeader(month) ^ daysHeader ^ generateAllDays(day,numberOfDays)
+      if (numberOfDays < 28 orelse numberOfDays > 31)
+        then raise InvalidMonthSize(numberOfDays)
+      else
+        generateHeader(month) ^ daysHeader ^ generateAllDays(day,numberOfDays)
     end
   
   and parseKey(dateKey: string) = 
@@ -30,20 +34,24 @@ structure GenerateCalendar : GENERATECALENDAR =
     generateMonthHeader(month: string)
   
   and generateMonthHeader(month: string) =
-    "\t\t\t" ^
-    (if month = "Jan" then "January"
-    else if month = "Feb" then "February"
-    else if month = "Mar" then "March"
-    else if month = "Apr" then "April"
-    else if month = "May" then "May"
-    else if month = "Jun" then "June"
-    else if month = "Jul" then "July"
-    else if month = "Aug" then "August"
-    else if month = "Sep" then "September"
-    else if month = "Oct" then "October"
-    else if month = "Nov" then "November"
-    else if month = "Dec" then "December"
-    else "-1000000ERROR") ^ "\n"
+    let
+      exception InvalidMonth of string
+    in 
+      "\t\t\t" ^
+      (if month = "Jan" then "January"
+      else if month = "Feb" then "February"
+      else if month = "Mar" then "March"
+      else if month = "Apr" then "April"
+      else if month = "May" then "May"
+      else if month = "Jun" then "June"
+      else if month = "Jul" then "July"
+      else if month = "Aug" then "August"
+      else if month = "Sep" then "September"
+      else if month = "Oct" then "October"
+      else if month = "Nov" then "November"
+      else if month = "Dec" then "December"
+      else raise InvalidMonth(month))
+    end
   
   and generateAllDays(day: string, numberOfDays: int) =
     if day = "Sun" then (allDaysHelper("Sun",numberOfDays,1))
