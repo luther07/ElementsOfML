@@ -50,7 +50,7 @@ structure GenerateCalendar : GENERATECALENDAR =
       else if month = "Oct" then "October"
       else if month = "Nov" then "November"
       else if month = "Dec" then "December"
-      else raise InvalidMonth(month))
+      else raise InvalidMonth(month)) ^ "\n"
     end
   
   and generateAllDays(day: string, numberOfDays: int) =
