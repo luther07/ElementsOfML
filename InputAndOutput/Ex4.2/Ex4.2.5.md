@@ -7,8 +7,7 @@ character. For example, a request to print the calendar for a September
 in which the first of the month is on a Thursday would be: Sep Thu 30
 
 Print the calendar as:
-1. A row with the month (full name) indented by three tabs.
-2. A blank row.
-3. A row with the names of the days (three-letter abbreviations separated
-by tabs.
-4. As many rows as necessary, with the days printed in the proper columns.
+1.  A row with the month (full name) indented by three tabs.
+2.  A blank row.
+3.  A row with the names of the days (three-letter abbreviations separated by tabs.
+4.  As many rows as necessary, with the days printed in the proper columns.
