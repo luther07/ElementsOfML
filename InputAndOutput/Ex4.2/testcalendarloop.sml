@@ -10,6 +10,7 @@ fun loop() = (
       then (print (generateCalendar(valOf(date_key)));loop())
     else
       ()
-end);
+  end
+);
 
 loop();
