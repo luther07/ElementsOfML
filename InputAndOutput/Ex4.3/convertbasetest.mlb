@@ -1,0 +1,11 @@
+local
+  (* import Basis Library *)
+  $(SML_LIB)/basis/basis.mlb
+  convertbase-sigs.sml
+  getIInBaseB.sml
+in
+  signature BASECONVERTER
+  structure ConvertBase
+  convertbase-open.sml
+  test.sml
+end
