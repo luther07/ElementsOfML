@@ -17,7 +17,7 @@ structure ConvertBase : BASECONVERTER =
       val whole = input div base
       val part = input mod base
     in
-      if (whole = 0)
+      if (whole <> 0)
         then part::numbers
       else
         (print (Int.toString(whole));print(Int.toString(part));convertToBaseBHelper(whole,base,(part::numbers)))
@@ -49,5 +49,11 @@ structure ConvertBase : BASECONVERTER =
       "(" ^ Int.toString(hd) ^ convertToString(tl) ^ ")"
      
   and listToInt(numbers: int list) =
-    1
+    listToIntHelper(numbers,1)
+
+  and listToIntHelper(nil,_) =
+        0
+     |listToIntHelper(hd::tl: int list, start: int) =
+        hd * start + (listToIntHelper(tl, (start*10)))
+    
 end
