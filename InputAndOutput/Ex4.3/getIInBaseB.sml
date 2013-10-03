@@ -46,7 +46,7 @@ structure ConvertBase : BASECONVERTER =
     if hd <= 9
       then Int.toString(hd) ^ convertToString(tl)
     else
-      "(" ^ Int.toString(hd) ^ convertToString(tl) ^ ")"
+      "(" ^ Int.toString(hd) ^ ")" ^ convertToString(tl)
      
   and listToInt(numbers: int list) =
     listToIntHelper(numbers,1)
