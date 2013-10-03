@@ -20,7 +20,7 @@ structure ConvertBase : BASECONVERTER =
       if (whole <> 0)
         then part::numbers
       else
-        (print (Int.toString(whole));print(Int.toString(part));convertToBaseBHelper(whole,base,(part::numbers)))
+        convertToBaseBHelper(whole,base,(part::numbers))
     end
 
   and getInputs(infile: TextIO.instream) =
@@ -28,7 +28,7 @@ structure ConvertBase : BASECONVERTER =
       val firstInput = listToInt(getNextInput(infile,nil))
       val secondInput = listToInt(getNextInput(infile,nil))
     in
-      (print (Int.toString(firstInput));(firstInput,secondInput))
+      (firstInput,secondInput)
     end
 
   and getNextInput(infile: TextIO.instream, numberList: int list) =
