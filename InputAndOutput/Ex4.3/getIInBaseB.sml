@@ -28,7 +28,7 @@ structure ConvertBase : BASECONVERTER =
       val firstInput = listToInt(getNextInput(infile,nil))
       val secondInput = listToInt(getNextInput(infile,nil))
     in
-      (firstInput,secondInput)
+      (print (Int.toString(firstInput));(firstInput,secondInput))
     end
 
   and getNextInput(infile: TextIO.instream, numberList: int list) =
@@ -36,7 +36,7 @@ structure ConvertBase : BASECONVERTER =
       val look_char = TextIO.lookahead(infile)
     in
       if (isSome(look_char) andalso Char.isDigit(valOf(look_char)))
-        then getNextInput(infile, ((ord(valOf(TextIO.input1(infile)))-50::numberList)))
+        then getNextInput(infile, ((ord(valOf(TextIO.input1(infile)))-48::numberList)))
       else
         (TextIO.input1(infile);numberList)
     end 
@@ -55,5 +55,4 @@ structure ConvertBase : BASECONVERTER =
         0
      |listToIntHelper(hd::tl: int list, start: int) =
         hd * start + (listToIntHelper(tl, (start*10)))
-    
 end
