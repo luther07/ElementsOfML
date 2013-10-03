@@ -25,8 +25,8 @@ structure ConvertBase : BASECONVERTER =
 
   and getInputs(infile: TextIO.instream) =
     let
-      val firstInput = 1
-      val secondInput = 2
+      val firstInput = listToInt(getNextInput(infile,nil))
+      val secondInput = listToInt(getNextInput(infile,nil))
     in
       (firstInput,secondInput)
     end
