@@ -1,4 +1,4 @@
 signature BASECONVERTER =
   sig
-    val getIInBaseB : TextIO.instream -> string
+    val getIInBaseB : string*string -> string
   end;
