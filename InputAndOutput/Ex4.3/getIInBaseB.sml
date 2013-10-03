@@ -13,7 +13,15 @@ structure ConvertBase : BASECONVERTER =
     convertToBaseBHelper(input, base, nil)
 
   and convertToBaseBHelper(input: int, base: int, numbers: int list) =
-    [1]
+    let
+      val whole = input div base
+      val part = input mod base
+    in
+      if (whole = 0)
+        then part::numbers
+      else
+        convertToBaseBHelper(whole,base,(part::numbers))
+    end
 
   and getInputs(infile: TextIO.instream) =
     let
