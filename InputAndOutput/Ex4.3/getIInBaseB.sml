@@ -17,7 +17,7 @@ structure ConvertBase : BASECONVERTER =
       val whole = input div base
       val part = input mod base
     in
-      if (whole <> 0)
+      if (whole = 0)
         then part::numbers
       else
         convertToBaseBHelper(whole,base,(part::numbers))
