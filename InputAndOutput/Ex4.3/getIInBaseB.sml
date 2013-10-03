@@ -20,7 +20,7 @@ structure ConvertBase : BASECONVERTER =
       if (whole = 0)
         then part::numbers
       else
-        convertToBaseBHelper(whole,base,(part::numbers))
+        (print (Int.toString(whole));print(Int.toString(part));convertToBaseBHelper(whole,base,(part::numbers)))
     end
 
   and getInputs(infile: TextIO.instream) =
@@ -32,12 +32,22 @@ structure ConvertBase : BASECONVERTER =
     end
 
   and getNextInput(infile: TextIO.instream, numberList: int list) =
-    1
-    (* let
+    let
       val look_char = TextIO.lookahead(infile)
     in
-      if (isSome(look_char) *)
+      if (isSome(look_char) andalso Char.isDigit(valOf(look_char)))
+        then getNextInput(infile, ((ord(valOf(TextIO.input1(infile)))-50::numberList)))
+      else
+        (TextIO.input1(infile);numberList)
+    end 
 
-  and convertToString(baseList: int list) =
-    "1"
+  and convertToString(nil) = ""
+     |convertToString(hd::tl) = 
+    if hd <= 9
+      then Int.toString(hd) ^ convertToString(tl)
+    else
+      "(" ^ Int.toString(hd) ^ convertToString(tl) ^ ")"
+     
+  and listToInt(numbers: int list) =
+    1
 end

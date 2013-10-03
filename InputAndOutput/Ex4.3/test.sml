@@ -1,5 +1,6 @@
 let
+  val infile = TextIO.openIn("infile")
   val outfile = TextIO.openOut("outfile")
 in
-  (print "convert i to base b\n";TextIO.output(outfile, getIInBaseB("infile","outfile"));print "\n")
+  TextIO.output(TextIO.stdOut, (getIInBaseB("infile","outfile")))
 end;
