@@ -1,13 +1,8 @@
 structure ConvertBase : BASECONVERTER =
   struct
 
-  fun getIInBaseB(inputFileName: string, outputFileName: string) =
-    let
-      val infile = TextIO.openIn(inputFileName)
-      val outfile = TextIO.openOut(outputFileName)
-    in
-      convertToString(convertToBaseB(getInputs(infile)))
-    end
+  fun getIInBaseB(inputStream: TextIO.instream) =
+    convertToString(convertToBaseB(getInputs(inputStream)))
 
   and convertToBaseB(input: int, base: int) =
     convertToBaseBHelper(input, base, nil)

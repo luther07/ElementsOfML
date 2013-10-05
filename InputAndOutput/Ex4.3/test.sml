@@ -1,8 +1,12 @@
 let
-  val infile = TextIO.openIn("infile")
-  val outfile = TextIO.openOut("outfile")
+  val infile = TextIO.stdIn
+  val outfile = TextIO.stdOut
 in
-  TextIO.output(outfile, (getIInBaseB("infile","outfile")))
+  (
+    print "Enter number and base you want to convert it to, separated by a space:\n";
+    TextIO.output(outfile, ("The answer is:\n" ^ (getIInBaseB(infile)) ^ "\n"))
+    
+  )
 end;
 
 if (convertToBaseB(2,2) = [1,0])
