@@ -1,10 +1,10 @@
 structure ConvertBase : BASECONVERTER =
   struct
 
-  fun getIInBaseB(inputStream: TextIO.instream) =
+  fun getIInBaseB(inputStream: TextIO.instream):string =
     convertToString(convertToBaseB(getInputs(inputStream)))
 
-  and convertToBaseB(input: int, base: int) =
+  and convertToBaseB(input: int, base: int):int list =
     convertToBaseBHelper(input, base, nil)
 
   and convertToBaseBHelper(input: int, base: int, numbers: int list) =
@@ -12,10 +12,8 @@ structure ConvertBase : BASECONVERTER =
       val whole = input div base
       val part = input mod base
     in
-      if (whole = 0)
-        then part::numbers
-      else
-        convertToBaseBHelper(whole,base,(part::numbers))
+      if (whole = 0) then part::numbers
+      else convertToBaseBHelper(whole,base,(part::numbers))
     end
 
   and getInputs(infile: TextIO.instream) =
@@ -30,18 +28,18 @@ structure ConvertBase : BASECONVERTER =
     let
       val look_char = TextIO.lookahead(infile)
     in
-      if (isSome(look_char) andalso Char.isDigit(valOf(look_char)))
-        then getNextInput(infile, ((ord(valOf(TextIO.input1(infile)))-48::numberList)))
+      if (isSome(look_char) andalso Char.isDigit(valOf(look_char))) 
+        then getNextInput(infile, (
+          (ord(valOf(TextIO.input1(infile)))-48::numberList))
+        )
       else
         (TextIO.input1(infile);numberList)
     end 
 
   and convertToString(nil) = ""
      |convertToString(hd::tl) = 
-    if hd <= 9
-      then Int.toString(hd) ^ convertToString(tl)
-    else
-      "(" ^ Int.toString(hd) ^ ")" ^ convertToString(tl)
+    if hd <= 9 then Int.toString(hd) ^ convertToString(tl)
+    else "(" ^ Int.toString(hd) ^ ")" ^ convertToString(tl)
      
   and listToInt(numbers: int list) =
     listToIntHelper(numbers,1)
