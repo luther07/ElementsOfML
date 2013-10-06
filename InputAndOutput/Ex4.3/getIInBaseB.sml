@@ -36,10 +36,13 @@ structure ConvertBase : BASECONVERTER =
         (TextIO.input1(infile);numberList)
     end 
 
-  and convertToString(nil) = ""
-     |convertToString(hd::tl) = 
-    if hd <= 9 then Int.toString(hd) ^ convertToString(tl)
-    else "(" ^ Int.toString(hd) ^ ")" ^ convertToString(tl)
+  and convertToString(result: int list) =
+    convertToStringHelper(result,"")
+
+  and convertToStringHelper(nil,intermediateResult: string) = intermediateResult
+     |convertToStringHelper(hd::tl,intermediateResult: string) =
+        if hd <= 9 then convertToStringHelper(tl,(intermediateResult ^ (Int.toString(hd))))
+        else convertToStringHelper(tl,(intermediateResult ^ "(" ^ (Int.toString(hd)) ^ ")"))
      
   and listToInt(numbers: int list) =
     listToIntHelper(numbers,1)
