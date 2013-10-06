@@ -45,10 +45,10 @@ structure ConvertBase : BASECONVERTER =
         else convertToStringHelper(tl,(intermediateResult ^ "(" ^ (Int.toString(hd)) ^ ")"))
      
   and listToInt(numbers: int list) =
-    listToIntHelper(numbers,1)
+    listToIntHelper(numbers,1,0)
 
-  and listToIntHelper(nil,_) =
-        0
-     |listToIntHelper(hd::tl: int list, start: int) =
-        hd * start + (listToIntHelper(tl, (start*10)))
+  and listToIntHelper(nil,_,intermediateResult: int) =
+        intermediateResult
+     |listToIntHelper(hd::tl: int list, start: int,intermediateResult: int) =
+        (listToIntHelper(tl, (start*10),intermediateResult + hd*start))
 end
