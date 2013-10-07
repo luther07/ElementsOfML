@@ -29,9 +29,7 @@ structure ConvertBase : BASECONVERTER =
     in
       if (isSome(look_char) andalso Char.isDigit(valOf(look_char))) 
         then getNextInput(infile, 
-        (
-          Int.toLarge(ord(valOf(TextIO.input1(infile)))-48)::numberList
-        )
+        (Int.toLarge(ord(valOf(TextIO.input1(infile)))-48)::numberList))
       else
         (TextIO.input1(infile);numberList)
     end 
@@ -49,6 +47,6 @@ structure ConvertBase : BASECONVERTER =
 
   and listToIntHelper(nil,_,intermediateResult: LargeInt.int) =
         intermediateResult
-     |listToIntHelper(hd::tl: LargeInt.int list, start: int, intermediateResult: LargeInt.int) =
+     |listToIntHelper(hd::tl: LargeInt.int list, start: LargeInt.int, intermediateResult: LargeInt.int) =
         (listToIntHelper(tl, (start*10),intermediateResult + hd*start))
 end
