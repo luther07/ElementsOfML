@@ -1,0 +1,10 @@
+local
+  (* import Basis Library *)
+  $(SML_LIB)/basis/basis.mlb
+  pmult-sigs.sml
+  pmult.sml
+in
+  signature POLYS
+  structure Polynomials
+  pmult-open.sml
+end
