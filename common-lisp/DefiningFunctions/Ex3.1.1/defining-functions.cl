@@ -24,3 +24,9 @@
 ;; function that returns third element of a list
 (defun third-element (x)
   (car (cdr (cdr x))))
+
+;; function to reverse a tuple of length 3
+(defun reverse-triple (x)
+  (cond ((triple-int-p x)
+    (make-triple-int :one (triple-int-three x) :two (triple-int-two x) :three (triple-int-one x)))
+        (t nil)))
