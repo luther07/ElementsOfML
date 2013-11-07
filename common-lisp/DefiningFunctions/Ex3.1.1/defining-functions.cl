@@ -20,3 +20,7 @@
         (triple-int-two x)
         (triple-int-three x))))
     (t nil)))
+
+;; function that returns third element of a list
+(defun third-element (x)
+  (car (cdr (cdr x))))
