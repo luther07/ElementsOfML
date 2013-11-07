@@ -1,0 +1,1 @@
+(format t "\"\\\\\\\" stands for the double-quote character, \\~% \\which otherwise would be interpreted \\~% \\as the string ender.\"")
