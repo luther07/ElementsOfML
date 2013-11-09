@@ -32,3 +32,6 @@
 
 (defun round-nearest-tenth (x)
   (/ (round (* 10.0 x)) 10.0))
+
+(defun remove-second-element (x)
+  (cons (car x) (cdr (cdr x))))
