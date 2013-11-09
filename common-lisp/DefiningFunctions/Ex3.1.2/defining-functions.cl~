@@ -1,0 +1,17 @@
+;; a function that returns the smallest and largest of its three integer arguments.
+(defstruct double-int
+  (one 0 :type fixnum)
+  (two 0 :type fixnum))
+
+(defun smallest-and-largest (a b c)
+  (if (< a b)
+    (if (< b c)
+      (make-double-int :one a :two c)
+      (if (< a c)
+        (make-double-int :one a :two b)
+        (make-double-int :one c :two b)))
+    (if (> c a)
+      (make-double-int :one b :two c)
+      (if (> c b)
+        (make-double-int :one b :two a)
+        (make-double-int :one c :two a)))))
