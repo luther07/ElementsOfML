@@ -30,3 +30,19 @@
   (cond ((triple-int-p x)
     (make-triple-int :one (triple-int-three x) :two (triple-int-two x) :three (triple-int-one x)))
         (t nil)))
+
+;; function that returns the third character of a string
+(defun third-character (x)
+  (car (cdr (cdr (coerce x 'list)))))
+
+;; cycle a list by one place
+(defun cycle-one (x)
+  (defun reverse-list (original new)
+    (if original
+      (cycle-helper (cdr original) (cons (car original) new))
+      new))
+  (defun repack (reversed-tail original-head)
+    (if reversed-tail
+      (repack (cdr reversed-tail) (cons (car reversed-tail) original-head))
+      original-head))
+  (repack (reverse-list (cdr x) nil) (cons (car x) nil)))
