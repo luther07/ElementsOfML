@@ -13,12 +13,12 @@ and compute_xs(0,1,xs:string)=xs ^ xs
       let
         val intermediate = xs ^ xs ^ xs ^ xs
       in
-        intermed ^ intermed
+        intermediate ^ intermediate
       end
    |compute_xs(cube,0,xs)=compute_xs(cube div 2,cube mod 2, xs ^ xs ^ xs ^ xs)
    |compute_xs(cube,square,xs)=
       let 
         val intermediate = xs ^ xs ^ xs ^ xs
       in
-        compute_xs(cube div 2,cube mod 2,intermed ^ intermed)
+        compute_xs(cube div 2,cube mod 2,intermediate ^ intermediate)
       end;
