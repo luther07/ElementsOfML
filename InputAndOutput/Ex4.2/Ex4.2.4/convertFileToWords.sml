@@ -1,16 +1,16 @@
 structure ConvertFile : FILECONVERTER =
   struct
 
-  fun convertFileToWords(filePath: string) =
+  fun convertFileToWords(filePath: string) : string list =
     (* calls getWords and getFile *)
     (* string -> string list *)
     getWords((getFile(filePath)),[])
 
-  and getFile(filePath: string) =
+  and getFile(filePath: string) : TextIO.instream =
     (* string -> TextIO.instream *)
     TextIO.openIn(filePath)
 
-  and getWords(wordFile: TextIO.instream, words: string list) =
+  and getWords(wordFile: TextIO.instream, words: string list) : string list =
     (* calls getNextWord *)
     (* TextIO.instream*string list -> string list *)
     let
@@ -22,7 +22,7 @@ structure ConvertFile : FILECONVERTER =
         getWords(wordFile, (getNextWord(wordFile)::words))
     end
 
-  and getNextWord(wordFile: TextIO.instream) =
+  and getNextWord(wordFile: TextIO.instream) : string =
     (* calls removeEmptyWord and inputWord *)
     (* TextIO.instream -> string *)
     (* Must add to the if expression, handling not isSome *)
@@ -36,7 +36,7 @@ structure ConvertFile : FILECONVERTER =
         inputWord(wordFile,"")
     end
 
-  and inputWord(wordFile: TextIO.instream, word: string) =
+  and inputWord(wordFile: TextIO.instream, word: string) : string =
     (* recursively calls itself *)
     (* tested tested tested tested tested *)
     (* TextIO.instream*string -> string *)
@@ -58,7 +58,7 @@ structure ConvertFile : FILECONVERTER =
         word
     end
 
-  and removeEmptyWord(wordFile: TextIO.instream) =
+  and removeEmptyWord(wordFile: TextIO.instream) : string =
     (* TextIO.instream -> string *)
     let
       (* you can't get the valOf if there's no val *)
