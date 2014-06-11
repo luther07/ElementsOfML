@@ -3,16 +3,13 @@ structure ConvertFile : FILECONVERTER =
 
   fun convertFileToWords(filePath: string) : string list =
     (* calls getWords and getFile *)
-    (* string -> string list *)
     getWords((getFile(filePath)),[])
 
   and getFile(filePath: string) : TextIO.instream =
-    (* string -> TextIO.instream *)
     TextIO.openIn(filePath)
 
   and getWords(wordFile: TextIO.instream, words: string list) : string list =
     (* calls getNextWord *)
-    (* TextIO.instream*string list -> string list *)
     let
       val isEnd = TextIO.endOfStream(wordFile)
     in
@@ -24,7 +21,6 @@ structure ConvertFile : FILECONVERTER =
 
   and getNextWord(wordFile: TextIO.instream) : string =
     (* calls removeEmptyWord and inputWord *)
-    (* TextIO.instream -> string *)
     (* Must add to the if expression, handling not isSome *)
     let
       (* you can't get the valOf, if there's no val *)
@@ -39,7 +35,6 @@ structure ConvertFile : FILECONVERTER =
   and inputWord(wordFile: TextIO.instream, word: string) : string =
     (* recursively calls itself *)
     (* tested tested tested tested tested *)
-    (* TextIO.instream*string -> string *)
     (* Must add to the if expression, handling not isSome *)
     let
       (* you can't get the valOf, if there's no val *)
@@ -59,9 +54,8 @@ structure ConvertFile : FILECONVERTER =
     end
 
   and removeEmptyWord(wordFile: TextIO.instream) : string =
-    (* TextIO.instream -> string *)
     let
-      (* you can't get the valOf if there's no val *)
+    (* you can't get the valOf if there's no val *)
     (* Must add to the if expression, handling not isSome *)
       val peekOption = TextIO.lookahead(wordFile)
     in
