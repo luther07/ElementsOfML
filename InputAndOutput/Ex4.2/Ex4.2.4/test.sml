@@ -9,4 +9,5 @@ in
   print("other test");
   map (fn words => printWords(words)) (map (fn file => convertFileToWords(file)) files);
   OS.Process.exit OS.Process.success : unit
-end;
+end
+
