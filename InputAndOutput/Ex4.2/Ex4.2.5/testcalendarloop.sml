@@ -3,8 +3,6 @@ fun loop() = (
   print "For example \"Feb Mon 28\", to print a February which begins on Monday and has 28 days\n";
 
   let
-    val my_input = TextIO.stdIn
-    (* val date_key = "Jun Sun 30" *)
     val date_key = TextIO.inputLine(TextIO.stdIn)
   in
     if isSome(date_key)
