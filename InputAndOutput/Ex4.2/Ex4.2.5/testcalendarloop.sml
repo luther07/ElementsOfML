@@ -1,5 +1,6 @@
 fun loop() = (
   print "Please provide month details: MMM DDD XX\n";
+  print "For example \"Feb Mon 28\", to print a February which begins on Monday and has 28 days\n";
 
   let
     val my_input = TextIO.stdIn
