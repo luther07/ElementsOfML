@@ -24,9 +24,9 @@ structure GenerateCalendar : GENERATECALENDAR =
 
     in
       if (numberOfDays < 28 orelse numberOfDays > 31 orelse
-         firstDayDigit < 2 orelse firstDayDigit > 3 orelse
-         (secondDayDigit < 8 andalso secondDayDigit <> 0 andalso secondDayDigit <> 1) orelse 
-         secondDayDigit > 9)
+         (firstDayDigit <> 2 andalso firstDayDigit <> 3) orelse
+         (secondDayDigit <> 8 andalso secondDayDigit <> 9 andalso
+          secondDayDigit <> 0 andalso secondDayDigit <> 1))
         then raise InvalidMonthSize(numberOfDays)
       else
         (month,day,numberOfDays)
