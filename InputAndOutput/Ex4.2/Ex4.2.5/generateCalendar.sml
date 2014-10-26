@@ -33,22 +33,23 @@ structure GenerateCalendar : GENERATECALENDAR =
     end
 
   and generateMonthHeader(month: string) =
-      case month of
-          "jan" => "January"
-         |"feb" => "February"
-         |"mar" => "March"
-         |"apr" => "April"
-         |"may" => "May"
-         |"jun" => "June"
-         |"jul" => "July"
-         |"aug" => "August"
-         |"sep" => "September"
-         |"oct" => "October"
-         |"nov" => "November"
-         |"dec" => "December"
-         | _    => raise InvalidMonth(month)
+          case month of
+              "jan" => "January"
+             |"feb" => "February"
+             |"mar" => "March"
+             |"apr" => "April"
+             |"may" => "May"
+             |"jun" => "June"
+             |"jul" => "July"
+             |"aug" => "August"
+             |"sep" => "September"
+             |"oct" => "October"
+             |"nov" => "November"
+             |"dec" => "December"
+             | _    => raise InvalidMonth(month)
   
   and generateAllDays(day: string, numberOfDays: int) =
+  
       if day = "sun" then (allDaysHelper("sun",numberOfDays,1))
       else if day = "mon" then "\t" ^ (allDaysHelper("mon",numberOfDays,1))
       else if day = "tue" then "\t\t" ^ (allDaysHelper("tue",numberOfDays,1))
