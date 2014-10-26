@@ -18,9 +18,9 @@ structure GenerateCalendar : GENERATECALENDAR =
   
   and parseKey(dateKey: string) = 
     let
-      val month = implode(String.sub(dateKey,0) ::
-                          String.sub(dateKey,1) ::
-                          String.sub(dateKey,2) ::
+      val month = implode((Char.toLower(String.sub(dateKey,0))) ::
+                          (Char.toLower(String.sub(dateKey,1))) ::
+                          (Char.toLower(String.sub(dateKey,2))) ::
                           nil)
       val day = implode(String.sub(dateKey,4) ::
                         String.sub(dateKey,5) ::
@@ -38,18 +38,18 @@ structure GenerateCalendar : GENERATECALENDAR =
   
   and generateMonthHeader(month: string) =
       "\t\t\t" ^
-      (if month = "Jan" then "January"
-      else if month = "Feb" then "February"
-      else if month = "Mar" then "March"
-      else if month = "Apr" then "April"
-      else if month = "May" then "May"
-      else if month = "Jun" then "June"
-      else if month = "Jul" then "July"
-      else if month = "Aug" then "August"
-      else if month = "Sep" then "September"
-      else if month = "Oct" then "October"
-      else if month = "Nov" then "November"
-      else if month = "Dec" then "December"
+      (if month = "jan" then "January"
+      else if month = "feb" then "February"
+      else if month = "bar" then "March"
+      else if month = "apr" then "April"
+      else if month = "may" then "May"
+      else if month = "jun" then "June"
+      else if month = "jul" then "July"
+      else if month = "aug" then "August"
+      else if month = "sep" then "September"
+      else if month = "oct" then "October"
+      else if month = "nov" then "November"
+      else if month = "dec" then "December"
       else raise InvalidMonth(month)) ^ "\n"
   
   and generateAllDays(day: string, numberOfDays: int) =
