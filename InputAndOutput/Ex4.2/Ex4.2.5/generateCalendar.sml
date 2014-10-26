@@ -49,26 +49,26 @@ structure GenerateCalendar : GENERATECALENDAR =
              | _    => raise InvalidMonth(month)
   
   and generateAllDays(day: string, numberOfDays: int) =
-  
-      if day = "sun" then (allDaysHelper("sun",numberOfDays,1))
-      else if day = "mon" then "\t" ^ (allDaysHelper("mon",numberOfDays,1))
-      else if day = "tue" then "\t\t" ^ (allDaysHelper("tue",numberOfDays,1))
-      else if day = "wed" then "\t\t\t" ^ (allDaysHelper("wed",numberOfDays,1))
-      else if day = "thu" then "\t\t\t\t" ^ (allDaysHelper("thu",numberOfDays,1))
-      else if day = "fri" then "\t\t\t\t\t" ^ (allDaysHelper("fri",numberOfDays,1))
-      else if day = "sat" then "\t\t\t\t\t\t" ^ (allDaysHelper("sat",numberOfDays,1))
-      else raise InvalidDay(day)
+          case day of
+              "sun" => (allDaysHelper("sun",numberOfDays,1))
+             |"mon" => "\t" ^ (allDaysHelper("mon",numberOfDays,1))
+             |"tue" => "\t\t" ^ (allDaysHelper("tue",numberOfDays,1))
+             |"wed" => "\t\t\t" ^ (allDaysHelper("wed",numberOfDays,1))
+             |"thu" => "\t\t\t\t" ^ (allDaysHelper("thu",numberOfDays,1))
+             |"fri" => "\t\t\t\t\t" ^ (allDaysHelper("fri",numberOfDays,1))
+             |"sat" => "\t\t\t\t\t\t" ^ (allDaysHelper("sat",numberOfDays,1))
+             | _    => raise InvalidDay(day)
 
   and allDaysHelper(day: string, numberOfDays: int, currentNumber: int) =
-    if numberOfDays >= currentNumber then
-      if day = "sun" then (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("mon",numberOfDays,currentNumber+1)))
-      else if day = "mon" then (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("tue",numberOfDays,currentNumber+1)))
-      else if day = "tue" then (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("wed",numberOfDays,currentNumber+1)))
-      else if day = "wed" then (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("thu",numberOfDays,currentNumber+1)))
-      else if day = "thu" then (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("fri",numberOfDays,currentNumber+1)))
-      else if day = "fri" then (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("sat",numberOfDays,currentNumber+1)))
-      else if day = "sat" then (formatNumber(currentNumber) ^ "\n" ^ (allDaysHelper("sun",numberOfDays,currentNumber+1)))
-      else "-1000000ERROR"
+    if numberOfDays >= currentNumber then case day of
+              "sun" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("mon",numberOfDays,currentNumber+1)))
+             |"mon" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("tue",numberOfDays,currentNumber+1)))
+             |"tue" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("wed",numberOfDays,currentNumber+1)))
+             |"wed" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("thu",numberOfDays,currentNumber+1)))
+             |"thu" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("fri",numberOfDays,currentNumber+1)))
+             |"fri" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("sat",numberOfDays,currentNumber+1)))
+             |"sat" => (formatNumber(currentNumber) ^ "\n" ^ (allDaysHelper("sun",numberOfDays,currentNumber+1)))
+             | _    => "-1000000ERROR"
     else if (day <> "sun") then "\n" else ""
   
   and formatNumber(number: int) =
