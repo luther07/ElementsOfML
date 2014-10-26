@@ -7,16 +7,16 @@ structure GenerateCalendar : GENERATECALENDAR =
 
   fun generateCalendar(dateKey: string) =
     let
-      val (month,day,numberOfDays) = parseKey(dateKey)
+      val (month,startingDay,numberOfDays) = parseKey(dateKey)
       val daysHeader = "Sun\tMon\tTue\tWed\tThu\tFri\tSat\n"
     in
-      generateMonthHeader(month) ^ daysHeader ^ generateAllDays(day,numberOfDays)
+      generateMonthHeader(month) ^ daysHeader ^ generateAllDays(startingDay,numberOfDays)
     end
   
   and parseKey(dateKey: string) = 
     let
       val month = implode(map (fn ch => Char.toLower(ch)) (explode(String.substring(dateKey, 0, 3))))
-      val day = implode(map (fn ch => Char.toLower(ch)) (explode(String.substring(dateKey, 4, 3))))
+      val startingDay = implode(map (fn ch => Char.toLower(ch)) (explode(String.substring(dateKey, 4, 3))))
       val asciiCodeForZero = 48
       val firstDayDigit = ord(String.sub(dateKey,8)) - asciiCodeForZero
       val secondDayDigit = ord(String.sub(dateKey,9)) - asciiCodeForZero
@@ -29,7 +29,7 @@ structure GenerateCalendar : GENERATECALENDAR =
           secondDayDigit <> 0 andalso secondDayDigit <> 1))
         then raise InvalidMonthSize(numberOfDays)
       else
-        (month,day,numberOfDays)
+        (month,startingDay,numberOfDays)
     end
 
   and generateMonthHeader(month: string) =
@@ -48,16 +48,16 @@ structure GenerateCalendar : GENERATECALENDAR =
              |"dec" => "December"
              | _    => raise InvalidMonth(month)
   
-  and generateAllDays(day: string, numberOfDays: int) =
-          case day of
-              "sun" => (allDaysHelper("sun",numberOfDays,1))
-             |"mon" => "\t" ^ (allDaysHelper("mon",numberOfDays,1))
-             |"tue" => "\t\t" ^ (allDaysHelper("tue",numberOfDays,1))
-             |"wed" => "\t\t\t" ^ (allDaysHelper("wed",numberOfDays,1))
-             |"thu" => "\t\t\t\t" ^ (allDaysHelper("thu",numberOfDays,1))
-             |"fri" => "\t\t\t\t\t" ^ (allDaysHelper("fri",numberOfDays,1))
-             |"sat" => "\t\t\t\t\t\t" ^ (allDaysHelper("sat",numberOfDays,1))
-             | _    => raise InvalidDay(day)
+  and generateAllDays(startingDay: string, numberOfDays: int) =
+          case startingDay of
+              "sun" => (allDaysHelper(startingDay, numberOfDays,1))
+             |"mon" => "\t" ^ (allDaysHelper(startingDay, numberOfDays,1))
+             |"tue" => "\t\t" ^ (allDaysHelper(startingDay, numberOfDays,1))
+             |"wed" => "\t\t\t" ^ (allDaysHelper(startingDay, numberOfDays,1))
+             |"thu" => "\t\t\t\t" ^ (allDaysHelper(startingDay, numberOfDays,1))
+             |"fri" => "\t\t\t\t\t" ^ (allDaysHelper(startingDay, numberOfDays,1))
+             |"sat" => "\t\t\t\t\t\t" ^ (allDaysHelper(startingDay, numberOfDays,1))
+             | _    => raise InvalidDay(startingDay)
 
   and allDaysHelper(day: string, numberOfDays: int, currentNumber: int) =
     if numberOfDays >= currentNumber then case day of
