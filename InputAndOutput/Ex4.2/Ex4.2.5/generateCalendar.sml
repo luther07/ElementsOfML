@@ -1,11 +1,14 @@
 structure GenerateCalendar : GENERATECALENDAR = 
   struct
 
+  exception InvalidMonthSize of int
+  exception InvalidMonth of string
+  exception InvalidDay of string
+
   fun generateCalendar(dateKey: string) =
     let
       val (month,day,numberOfDays) = parseKey(dateKey)
       val daysHeader = "Sun\tMon\tTue\tWed\tThu\tFri\tSat\n"
-      exception InvalidMonthSize of int
     in
       if (numberOfDays < 28 orelse numberOfDays > 31)
         then raise InvalidMonthSize(numberOfDays)
@@ -34,9 +37,6 @@ structure GenerateCalendar : GENERATECALENDAR =
     generateMonthHeader(month: string)
   
   and generateMonthHeader(month: string) =
-    let
-      exception InvalidMonth of string
-    in 
       "\t\t\t" ^
       (if month = "Jan" then "January"
       else if month = "Feb" then "February"
@@ -51,12 +51,8 @@ structure GenerateCalendar : GENERATECALENDAR =
       else if month = "Nov" then "November"
       else if month = "Dec" then "December"
       else raise InvalidMonth(month)) ^ "\n"
-    end
   
   and generateAllDays(day: string, numberOfDays: int) =
-    let
-      exception InvalidDay of string
-    in
       if day = "Sun" then (allDaysHelper("Sun",numberOfDays,1))
       else if day = "Mon" then "\t" ^ (allDaysHelper("Mon",numberOfDays,1))
       else if day = "Tue" then "\t\t" ^ (allDaysHelper("Tue",numberOfDays,1))
@@ -65,7 +61,6 @@ structure GenerateCalendar : GENERATECALENDAR =
       else if day = "Fri" then "\t\t\t\t\t" ^ (allDaysHelper("Fri",numberOfDays,1))
       else if day = "Sat" then "\t\t\t\t\t\t" ^ (allDaysHelper("Sat",numberOfDays,1))
       else raise InvalidDay(day)
-    end
 
   and allDaysHelper(day: string, numberOfDays: int, currentNumber: int) =
     if numberOfDays >= currentNumber then
