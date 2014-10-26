@@ -10,10 +10,7 @@ structure GenerateCalendar : GENERATECALENDAR =
       val (month,day,numberOfDays) = parseKey(dateKey)
       val daysHeader = "Sun\tMon\tTue\tWed\tThu\tFri\tSat\n"
     in
-      if (numberOfDays < 28 orelse numberOfDays > 31)
-        then raise InvalidMonthSize(numberOfDays)
-      else
-        generateMonthHeader(month) ^ daysHeader ^ generateAllDays(day,numberOfDays)
+      generateMonthHeader(month) ^ daysHeader ^ generateAllDays(day,numberOfDays)
     end
   
   and parseKey(dateKey: string) = 
@@ -21,10 +18,18 @@ structure GenerateCalendar : GENERATECALENDAR =
       val month = implode(map (fn ch => Char.toLower(ch)) (explode(String.substring(dateKey, 0, 3))))
       val day = implode(map (fn ch => Char.toLower(ch)) (explode(String.substring(dateKey, 4, 3))))
       val asciiCodeForZero = 48
-      val numberOfDays = (10 * (ord(String.sub(dateKey,8))-asciiCodeForZero)) +
-                         (ord(String.sub(dateKey,9))-asciiCodeForZero)
+      val firstDayDigit = ord(String.sub(dateKey,8)) - asciiCodeForZero
+      val secondDayDigit = ord(String.sub(dateKey,9)) - asciiCodeForZero
+      val numberOfDays = 10 * firstDayDigit + secondDayDigit
+
     in
-      (month,day,numberOfDays)
+      if (numberOfDays < 28 orelse numberOfDays > 31 orelse
+         firstDayDigit < 2 orelse firstDayDigit > 3 orelse
+         (secondDayDigit < 8 andalso secondDayDigit <> 0 andalso secondDayDigit <> 1) orelse 
+         secondDayDigit > 9)
+        then raise InvalidMonthSize(numberOfDays)
+      else
+        (month,day,numberOfDays)
     end
   
   and generateMonthHeader(month: string) =
