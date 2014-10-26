@@ -10,6 +10,7 @@ fun loop() = (
     else
       ()
   end
+  handle Invalid => (print "Error, try again!\n"; loop())
 );
 
 loop();
