@@ -68,7 +68,7 @@ structure GenerateCalendar : GENERATECALENDAR =
              |"thu" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("fri",numberOfDays,currentNumber+1)))
              |"fri" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper("sat",numberOfDays,currentNumber+1)))
              |"sat" => (formatNumber(currentNumber) ^ "\n" ^ (allDaysHelper("sun",numberOfDays,currentNumber+1)))
-             | _    => "-1000000ERROR"
+             | _    => raise InvalidDay(day)
     else if (day <> "sun") then "\n" else ""
   
   and formatNumber(number: int) =
