@@ -13,7 +13,7 @@ structure GenerateCalendar : GENERATECALENDAR =
       if (numberOfDays < 28 orelse numberOfDays > 31)
         then raise InvalidMonthSize(numberOfDays)
       else
-        generateHeader(month) ^ daysHeader ^ generateAllDays(day,numberOfDays)
+        generateMonthHeader(month) ^ daysHeader ^ generateAllDays(day,numberOfDays)
     end
   
   and parseKey(dateKey: string) = 
@@ -26,9 +26,6 @@ structure GenerateCalendar : GENERATECALENDAR =
     in
       (month,day,numberOfDays)
     end
-  
-  and generateHeader(month: string) =
-    generateMonthHeader(month: string)
   
   and generateMonthHeader(month: string) =
       "\t\t\t" ^
