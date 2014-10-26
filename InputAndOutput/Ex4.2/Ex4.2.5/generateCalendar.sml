@@ -70,6 +70,17 @@ structure GenerateCalendar : GENERATECALENDAR =
              |"sat" => (formatNumber(currentNumber) ^ "\n" ^ (allDaysHelper("sun",numberOfDays,currentNumber+1)))
              | _    => raise InvalidDay(day)
     else if (day <> "sun") then "\n" else ""
+
+  and nextDay(day: string) =
+          case day of
+              "sun" => "mon"
+             |"mon" => "tue"
+             |"tue" => "wed"
+             |"wed" => "thu"
+             |"thu" => "fri"
+             |"fri" => "sat"
+             |"sat" => "sun"
+             | _    => raise InvalidDay(day)
   
   and formatNumber(number: int) =
     if number > 9 then Int.toString(number)
