@@ -18,14 +18,8 @@ structure GenerateCalendar : GENERATECALENDAR =
   
   and parseKey(dateKey: string) = 
     let
-      val month = implode(Char.toLower(String.sub(dateKey,0)) ::
-                          Char.toLower(String.sub(dateKey,1)) ::
-                          Char.toLower(String.sub(dateKey,2)) ::
-                          nil)
-      val day = implode(Char.toLower(String.sub(dateKey,4)) ::
-                        Char.toLower(String.sub(dateKey,5)) ::
-                        Char.toLower(String.sub(dateKey,6)) ::
-                        nil)
+      val month = implode(map (fn ch => Char.toLower(ch)) (explode(String.substring(dateKey, 0, 3))))
+      val day = implode(map (fn ch => Char.toLower(ch)) (explode(String.substring(dateKey, 4, 3))))
       val asciiCodeForZero = 48
       val numberOfDays = (10 * (ord(String.sub(dateKey,8))-asciiCodeForZero)) +
                          (ord(String.sub(dateKey,9))-asciiCodeForZero)
