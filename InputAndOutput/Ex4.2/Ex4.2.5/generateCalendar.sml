@@ -10,7 +10,7 @@ structure GenerateCalendar : GENERATECALENDAR =
       val (month,startingDay,numberOfDays) = parseKey(dateKey)
       val daysHeader = "Sun\tMon\tTue\tWed\tThu\tFri\tSat\n"
     in
-      generateMonthHeader(month) ^ daysHeader ^ generateAllDays(startingDay,numberOfDays)
+      monthHeader(month) ^ daysHeader ^ generateAllDays(startingDay,numberOfDays)
     end
   
   and parseKey(dateKey: string) = 
@@ -32,7 +32,7 @@ structure GenerateCalendar : GENERATECALENDAR =
         (month,startingDay,numberOfDays)
     end
 
-  and generateMonthHeader(month: string) =
+  and monthHeader(month: string) =
           case month of
               "jan" => "January"
              |"feb" => "February"
