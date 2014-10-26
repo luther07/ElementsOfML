@@ -4,7 +4,7 @@ local
   generatecalendar-sigs.sml
   generateCalendar.sml
 in
-  signature GENERATECALENDAR
+  signature GENERATE_CALENDAR
   structure GenerateCalendar
   generatecalendar-open.sml
   testcalendarloop.sml

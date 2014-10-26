@@ -1,4 +1,4 @@
-structure GenerateCalendar : GENERATECALENDAR = 
+structure GenerateCalendar : GENERATE_CALENDAR = 
    struct
       exception InvalidMonthSize of int
       exception InvalidMonth of string
