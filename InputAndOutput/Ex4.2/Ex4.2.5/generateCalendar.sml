@@ -65,16 +65,12 @@ structure GenerateCalendar : GENERATECALENDAR =
              | _    => raise InvalidDay(startingDay)
 
   and allDaysHelper(day: string, numberOfDays: int, currentNumber: int) =
-    if numberOfDays >= currentNumber then case day of
-              "sun" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper(nextDay(day),numberOfDays,currentNumber+1)))
-             |"mon" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper(nextDay(day),numberOfDays,currentNumber+1)))
-             |"tue" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper(nextDay(day),numberOfDays,currentNumber+1)))
-             |"wed" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper(nextDay(day),numberOfDays,currentNumber+1)))
-             |"thu" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper(nextDay(day),numberOfDays,currentNumber+1)))
-             |"fri" => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper(nextDay(day),numberOfDays,currentNumber+1)))
-             |"sat" => (formatNumber(currentNumber) ^ "\n" ^ (allDaysHelper(nextDay(day),numberOfDays,currentNumber+1)))
-             | _    => raise InvalidDay(day)
-    else if (day <> "sun") then "\n" else ""
+    if numberOfDays >= currentNumber 
+        then case day of
+            "sat" => (formatNumber(currentNumber) ^ "\n" ^ (allDaysHelper(nextDay(day),numberOfDays,currentNumber+1)))
+           | _    => (formatNumber(currentNumber) ^ "\t" ^ (allDaysHelper(nextDay(day),numberOfDays,currentNumber+1)))
+    else 
+        if (day <> "sun") then "\n" else ""
 
   and nextDay(day: string) =
           case day of
