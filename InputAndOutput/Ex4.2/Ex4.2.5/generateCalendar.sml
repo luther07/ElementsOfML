@@ -32,22 +32,27 @@ structure GenerateCalendar : GENERATECALENDAR =
         (month,startingDay,numberOfDays)
     end
 
-  and monthHeader(month: string) =
-          case month of
-              "jan" => "January"
-             |"feb" => "February"
-             |"mar" => "March"
-             |"apr" => "April"
-             |"may" => "May"
-             |"jun" => "June"
-             |"jul" => "July"
-             |"aug" => "August"
-             |"sep" => "September"
-             |"oct" => "October"
-             |"nov" => "November"
-             |"dec" => "December"
-             | _    => raise InvalidMonth(month)
+  and monthHeader(month: string) = 
+          let val month_fullname =
+              case month of
+                  "jan" => "January"
+                 |"feb" => "February"
+                 |"mar" => "March"
+                 |"apr" => "April"
+                 |"may" => "May"
+                 |"jun" => "June"
+                 |"jul" => "July"
+                 |"aug" => "August"
+                 |"sep" => "September"
+                 |"oct" => "October"
+                 |"nov" => "November"
+                 |"dec" => "December"
+                 | _    => raise InvalidMonth(month) 
   
+          in
+              "\t\t\t" ^ month_fullname ^ "\n"
+          end
+
   and generateAllDays(startingDay: string, numberOfDays: int) =
           case startingDay of
               "sun" => (allDaysHelper(startingDay, numberOfDays,1))
