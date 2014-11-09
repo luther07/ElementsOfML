@@ -5,6 +5,6 @@ signature DEFININGFUNCTIONS =
     val cycle : 'a list -> 'a list
     val smallest : int*int*int -> int
     val reverse_tuple : 'a * 'a * 'a -> 'a * 'a * 'a
-    val thirdchar : 'a list -> 'a
+    val thirdchar : string -> char
     val third : 'a list -> 'a
   end;

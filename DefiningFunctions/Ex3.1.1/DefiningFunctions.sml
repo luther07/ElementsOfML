@@ -35,10 +35,12 @@ structure DefiningFunctions : DEFININGFUNCTIONS =
   
   fun reverse_tuple(a,b,c)=
     (c,b,a);
-  
-  fun thirdchar(l)=
-    hd(tl(tl(l)));
-  
+
+  (* function which returns the 3rd character in a string *)
+  fun thirdchar(a_string)=
+    hd(tl(tl(explode(a_string))));
+
+  (* function which returns the 3rd element of a list *)
   fun third(some_list)=
     hd(tl(tl(some_list)));
   
