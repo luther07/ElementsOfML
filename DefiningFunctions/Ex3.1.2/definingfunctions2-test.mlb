@@ -1,0 +1,13 @@
+local
+  (* import Basis Library *)
+  $(SML_LIB)/basis/basis.mlb
+  definingfunctions2-sigs.sml
+  definingfunctions2.sml
+in
+  signature DEFININGFUNCTIONS2
+  structure DefiningFunctions2
+  definingfunctions2-open.sml
+  roundNearestTenthTest.sml
+  sortThreeTest.sml
+  deletetwoTest.sml
+end
