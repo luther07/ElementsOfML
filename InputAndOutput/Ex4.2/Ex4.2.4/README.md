@@ -4,9 +4,9 @@ README
 >sml
 # Load the signatures
 -use "convertfile-sigs.sml";
-# Load the definitions for the GenerateCalendar structure
+# Load the definitions for the ConvertFile structure
 -use "convertFileToWords.sml";
-# Open the GenerateCalendar structure for easy access
+# Open the ConvertFile structure for easy access
 -open ConvertFile;
 # Now enter function calls, example useage
 -print(convertFileToWords "path/to/file");
