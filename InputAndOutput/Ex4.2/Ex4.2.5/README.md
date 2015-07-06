@@ -21,7 +21,8 @@ Aug Thu 31
 # Compile the mlton's compilation manager
 >mlton generateCalendarTest.mlb
 # Execute the binary
->./generateCalendarTest.mlg
+>./generateCalendarTest
+# Enter inputs when prompted
 # Example inputs
 Feb Mon 28
 Jan Fri 31
