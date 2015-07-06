@@ -9,7 +9,7 @@ README
 # Open the ConvertFile structure for easy access
 -open ConvertFile;
 # Now enter function calls, example useage
--print(convertFileToWords "path/to/file");
+-convertFileToWords "path/to/file";
 
 ## How to run interactively with mlton:
 # Compile with mlton's compilation manager
