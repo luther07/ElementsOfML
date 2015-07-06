@@ -22,8 +22,8 @@ structure ConvertFile : FILECONVERTER =
   (* and getWordsHelper(a, b, c) = ["and"]; *)
 
   and getWordsHelper(nil, word, words) = words
-         |getWordsHelper(letter::letters, word, words) = if letter = " " then 
-                                               getWordsHelper(letters, "", word::words)
-                                             else
-                                               getWordsHelper(letters, word ^ letter, words)
-end
+     |getWordsHelper(letter::letters, word, words) = if letter = " " then 
+                                                       getWordsHelper(letters, "", words@[word])
+                                                     else
+                                                       getWordsHelper(letters, word ^ letter, words)
+  end
