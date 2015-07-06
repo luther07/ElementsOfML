@@ -3,11 +3,7 @@ fun printWords(nil) = ()
 
 let 
   val files = CommandLine.arguments()
-  val stuff = "hi"::"bye"::nil
 in
-  printWords(stuff);
-  print("other test");
-  map (fn words => printWords(words)) (map (fn file => convertFileToWords(file)) files);
-  OS.Process.exit OS.Process.success : unit
-end
-
+  (map (fn words => printWords(words)) (map (fn file => convertFileToWords(file)) files);
+  OS.Process.exit OS.Process.success : unit)
+end;
