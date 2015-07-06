@@ -10,3 +10,9 @@ README
 -open ConvertFile;
 # Now enter function calls, example useage
 -print(convertFileToWords "path/to/file");
+
+## How to run interactively with mlton:
+# Compile with mlton's compilation manager
+>mlton convertfiletest.mlb
+# Execute the binary passing in one or more filenames/paths
+>./convertfiletest <file1> <file2> <file3>
